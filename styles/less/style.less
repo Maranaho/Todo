@@ -1,0 +1,109 @@
+// out: ../css/style.css, sourcemap: false, compress: true
+
+@bg : #e7ecff;
+@head :#b787f0;
+body {background: @bg}
+
+
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    max-height: 300px;
+    overflow-y: scroll;
+    transition: cubic-bezier(0.89, -0.06, 0.25, 1);;
+}
+li {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    span {color: #aab0c7}
+    button {
+        width: 15px;
+        background: url('../../img/bin.svg') no-repeat;
+        background-size: 15px auto;
+        font-size: 0;
+        color: rgba(255,255,255,0);
+        border: none;
+        cursor: pointer;
+        &:focus {outline: none}
+    }
+}
+
+
+section {
+    width: 350px;
+    margin: auto;
+    text-align: center;
+}
+
+header {
+    position: relative;
+    background: @head;
+    color: #fff;
+    padding: 20px;
+    margin-bottom: 150px 0 20px;
+    box-shadow: 0 0 10px 1px rgba(95, 114, 187, 0.29);
+    h1 {
+        font-size: 1em;
+        margin: 0;
+    }
+    button {
+        position: absolute;
+        left: 0;
+        top: 10px;
+    }
+}
+
+
+article {
+    background: #fff;
+    text-align: left;
+    padding: 40px;
+    position: relative;
+    box-shadow: 0 0 35px 1px rgba(95, 114, 187, 0.22);
+}
+
+.btn_ctn {
+    text-align: center;
+    position: absolute;
+    bottom: -20px;
+    left: 0;
+    right: 0;
+    button {
+        background: @head;
+        color: #fff;
+        border: none;
+        padding: 13px 40px;
+        font-size: 1em;
+        border-radius: 20px;
+        box-shadow: 0 6px 35px 1px rgba(122, 95, 187, 0.5);
+        cursor: pointer;
+        &:before {
+            content: "+";
+            transform: translateX(-7px);
+            display: inline-block;
+            font-weight: bold;
+        }
+    }
+}
+
+svg {
+    width: 15px;
+    height: 20px;
+}
+
+
+
+
+::-webkit-scrollbar {
+  width: 2px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255,255,255,0);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(150,150,150,.3);
+}

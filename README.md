@@ -1,1 +1,2 @@
-This is just a little todo list I did as  an exercise for a student of mine.
+# Todo List
+Just a todo list I did for a student of mine

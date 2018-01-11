@@ -41,6 +41,7 @@
 
   function formRevealer() {
     btn_ctn.classList = 'addItem';
+    input.focus();
   }
 
 
@@ -91,6 +92,7 @@
     data = currentList;
     input.value = '';
     init();
+    btn_ctn.classList = '';
   }
 
   function populateList() {

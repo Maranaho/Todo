@@ -10,7 +10,11 @@ body {
 }
 
 
-button:focus {outline: none}
+button,input {
+    &:focus {outline: none}
+}
+
+
 
 ul {
     margin: 0;
@@ -91,7 +95,7 @@ header {
     color: #fff;
     padding: 20px;
     margin: 70% 0 20px;
-    box-shadow: 0 0 10px 1px rgba(95, 114, 187, 0.29);
+    //box-shadow: 0 0 10px 1px rgba(95, 114, 187, 0.29);
     h1 {
         font-size: 1.2em;
         margin: 0;
@@ -172,11 +176,19 @@ article {
       }
       input {
         padding: 15px 0;
-        &::-webkit-input-placeholder {color: rgba(152, 158, 180, 0)}
+        &::-webkit-input-placeholder {
+            color: rgba(152, 158, 180, 0);
+            transition: .5s linear;
+        }
         transform: translateX(4px);
         border: none;
         box-shadow: 0 0 35px 1px rgba(95, 114, 187, 0.22);
         border-radius: 40px 0 0 40px;
+        transition: .6s cubic-bezier(0.09, 0.54, 0.24, 1.01);
+        &:focus {
+            padding: 15px 38px;
+            &::-webkit-input-placeholder {color: rgba(152, 158, 180, .5)}
+        }
       }
     }
     button {
@@ -218,5 +230,5 @@ svg {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(150,150,150,.3);
+  background: rgba(150,150,150,0);
 }

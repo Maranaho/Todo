@@ -2,8 +2,15 @@
 
 @bg : #e7ecff;
 @head :#b787f0;
-body {background: @bg}
+@color: #989eb4;
+body {
+  background: @bg;
+  font-family: helvetica, arial,sans-serif;
+  font-size: 16px;
+}
 
+
+button:focus {outline: none}
 
 ul {
     margin: 0;
@@ -11,28 +18,69 @@ ul {
     list-style: none;
     max-height: 300px;
     overflow-y: scroll;
-    transition: cubic-bezier(0.89, -0.06, 0.25, 1);;
 }
 li {
     display: flex;
     justify-content: space-between;
-    padding: 10px 0;
-    span {color: #aab0c7}
+    padding: 10px 0 10px 30px;
+    position: relative;
+    cursor: pointer;
+    &.done,
+    &:hover {
+        button {
+          transform: translateX(0);
+          opacity: 1;
+        }
+    }
+    &.done {
+      &:before {background: rgba(183, 135, 240, .6)}
+      span:before { right: 0% }
+    }
+    &:before {
+      content: "";
+      display: block;
+      width: 8px;
+      height: 8px;
+      background: rgba(183, 135, 240, 0);
+      border: 2px solid @color;
+      border-radius: 50%;
+      position: absolute;
+      left: 0;
+      top: 14px;
+      transition: .5s linear;
+    }
+    span {
+      color: @color;
+      position: relative;
+      font-size: 1.2em;&:before {
+        content: "";
+        display: block;
+        position: absolute;
+        left: 0%;
+        top: .5em;
+        right: 100%;
+        height: 2px;
+        background: @bg;
+        transition: .3s cubic-bezier(0, 0.4, 0.25, 0.99);
+      }
+    }
     button {
-        width: 15px;
+        width: 17px;
         background: url('../../img/bin.svg') no-repeat;
-        background-size: 15px auto;
+        background-size: 17px auto;
         font-size: 0;
         color: rgba(255,255,255,0);
         border: none;
         cursor: pointer;
-        &:focus {outline: none}
+        transition: .3s cubic-bezier(0, 0.4, 0.25, 0.99);
+        transform: translateX(-30px);
+        opacity: 0;
     }
 }
 
 
 section {
-    width: 350px;
+    width: 370px;
     margin: auto;
     text-align: center;
 }
@@ -42,16 +90,53 @@ header {
     background: @head;
     color: #fff;
     padding: 20px;
-    margin-bottom: 150px 0 20px;
+    margin: 70% 0 20px;
     box-shadow: 0 0 10px 1px rgba(95, 114, 187, 0.29);
     h1 {
-        font-size: 1em;
+        font-size: 1.2em;
         margin: 0;
     }
     button {
         position: absolute;
-        left: 0;
-        top: 10px;
+        left: 20px;
+        top: 23px;
+        font-size: 0;
+        color: rgba(255,255,255,0);
+        border: none;
+        width: 17px;
+        height: 17px;
+        display: block;
+        background: none;
+        cursor: pointer;
+        span,
+        &:after,
+        &:before {
+          content: "";
+          display: block;
+          position: absolute;
+          left: 0;
+          width: 100%;
+          height: 3px;
+          background: rgba(255,255,255,1);
+          transition: .3s cubic-bezier(0.09, 0.54, 0.24, 1.01);
+          transform: rotate(0deg);
+          z-index: 0;
+        }
+        &:before {top: 0 }
+        &:after {bottom: 0 }
+        span {bottom: 7px }
+        &:hover {
+          &:before {
+            transform: rotate(135deg);
+            top: 7px;
+          }
+          &:after {
+            transform: rotate(-135deg);
+            bottom: 7px;
+          }
+          span {width: 0}
+
+        }
     }
 }
 
@@ -64,21 +149,49 @@ article {
     box-shadow: 0 0 35px 1px rgba(95, 114, 187, 0.22);
 }
 
-.btn_ctn {
+#btn_ctn {
     text-align: center;
     position: absolute;
     bottom: -20px;
     left: 0;
     right: 0;
+    &.addItem {
+      button#revealForm {display:none}
+      form{display: block}
+    }
+    form {
+      position: absolute;
+      top: -45px;
+      left: 0;
+      width: 100%;
+      z-index: 0;
+      display: none;
+      button {
+        border-radius: 0 40px 40px 0;
+        padding-left: 30px;
+      }
+      input {
+        padding: 15px 0;
+        &::-webkit-input-placeholder {color: rgba(152, 158, 180, 0)}
+        transform: translateX(4px);
+        border: none;
+        box-shadow: 0 0 35px 1px rgba(95, 114, 187, 0.22);
+        border-radius: 40px 0 0 40px;
+      }
+    }
     button {
         background: @head;
         color: #fff;
         border: none;
-        padding: 13px 40px;
+        padding: 15px 40px;
         font-size: 1em;
-        border-radius: 20px;
+        border-radius: 40px;
+        font-weight: bold;
         box-shadow: 0 6px 35px 1px rgba(122, 95, 187, 0.5);
         cursor: pointer;
+        &#revealForm {
+          margin: 0 auto;
+        }
         &:before {
             content: "+";
             transform: translateX(-7px);
